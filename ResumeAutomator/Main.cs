@@ -22,6 +22,7 @@ namespace ResumeAutomator
 
         private void createResume_Click(object sender, EventArgs e)
         {
+            // Documentation @ https://afterlogic.com/mailbee-net/docs-itextsharp/
             Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
             PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("Test.pdf", FileMode.Create));
             doc.Open();// Open Document to write
