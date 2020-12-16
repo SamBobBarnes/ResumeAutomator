@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeAutomator", "ResumeAutomator\ResumeAutomator.csproj", "{1F42F59C-4FC1-4423-BD46-70696C2B1D64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F42F59C-4FC1-4423-BD46-70696C2B1D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F42F59C-4FC1-4423-BD46-70696C2B1D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F42F59C-4FC1-4423-BD46-70696C2B1D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F42F59C-4FC1-4423-BD46-70696C2B1D64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6A53F488-256A-4213-8F5E-9145AF3D20C8}
+	EndGlobalSection
+EndGlobal
