@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ResumeAutomator
 {
-    public partial class Form1 : Form
+    public partial class ResumeAutomator : Form
     {
-        public Form1()
+        public ResumeAutomator()
         {
             InitializeComponent();
         }
