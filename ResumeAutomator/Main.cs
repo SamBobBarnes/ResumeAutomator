@@ -16,5 +16,10 @@ namespace ResumeAutomator
         {
             InitializeComponent();
         }
+
+        private void createResume_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

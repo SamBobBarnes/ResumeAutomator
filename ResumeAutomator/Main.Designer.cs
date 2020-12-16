@@ -29,13 +29,25 @@ namespace ResumeAutomator
         /// </summary>
         private void InitializeComponent()
         {
+            this.createResume = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // createResume
+            // 
+            this.createResume.Location = new System.Drawing.Point(668, 393);
+            this.createResume.Name = "createResume";
+            this.createResume.Size = new System.Drawing.Size(120, 45);
+            this.createResume.TabIndex = 0;
+            this.createResume.Text = "Create Resume";
+            this.createResume.UseVisualStyleBackColor = true;
+            this.createResume.Click += new System.EventHandler(this.createResume_Click);
             // 
             // ResumeAutomator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.createResume);
             this.Name = "ResumeAutomator";
             this.Text = "Resume Automator";
             this.ResumeLayout(false);
@@ -43,6 +55,8 @@ namespace ResumeAutomator
         }
 
         #endregion
+
+        private System.Windows.Forms.Button createResume;
     }
 }
 
