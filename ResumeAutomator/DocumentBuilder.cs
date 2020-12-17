@@ -32,24 +32,57 @@ namespace ResumeAutomator
                 Console.WriteLine("Please close the pdf file that is open");
             }
 
+            /* Import Data */
+            JSONHandler jhandle = new JSONHandler();
+            ResumeData data = jhandle.ReadFromJSON();
+
 
             /*---------------------------           Writing to doc            ------------------------------------*/
 
             /* Open Document */
             doc.Open();
-  
+
+            /* Register Fonts */
+            FontFactory.RegisterDirectory("C:\\Windows\\Fonts");
+            Font Courier34 = FontFactory.GetFont("Courier New", 34);
+            Font Courier12 = FontFactory.GetFont("Courier New", 12);
+            Font Gothic9 = FontFactory.GetFont("Century Gothic", 9);
+
             /* Create Content */
+            Paragraph Name = new Paragraph(data.Name, Courier34);
+            Paragraph Bio = new Paragraph(data.Email + " | " + data.Phone + " | " + data.Address, Gothic9);
+
+            Paragraph Site = new Paragraph();
+            Site.Add(new Chunk(data.Site, Gothic9).SetAnchor("https://Barnes7619.com"));
+
+            Paragraph SummaryHead = CreateSeparator("Summary");
+            
+            
 
 
-            Paragraph paragraph = new Paragraph("This is my first time using Paragraph! \n hi hello");
-            //Now add the above created text using different class object to our pdf document
-
+            /* Formatting */
+            Name.Alignment = Element.ALIGN_CENTER;
+            Bio.Alignment = Element.ALIGN_CENTER;
+            Site.Alignment = Element.ALIGN_CENTER;
 
             /* Add Content to Document */
-            doc.Add(paragraph);
+            doc.Add(Name);
+            doc.Add(Bio);
+            doc.Add(Site);
+            doc.Add(SummaryHead);
 
             /* Close Document */
             doc.Close();
+        }
+
+        private Paragraph CreateSeparator(string txt)
+        {
+            
+            Chunk line = new Chunk("                                        ");
+            line.SetUnderline(1.5f, 3.5f);
+
+            Paragraph sep = new Paragraph(line + "  " + txt + "  " + line);
+            return sep;
         }
     }
 }
