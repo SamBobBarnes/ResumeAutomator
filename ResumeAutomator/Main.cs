@@ -23,6 +23,8 @@ namespace ResumeAutomator
         private void createResume_Click(object sender, EventArgs e)
         {
             DocumentBuilder doc = new DocumentBuilder(); // Create new DocumentBuilder 
+            JSONHandler js = new JSONHandler();
+
         }
     }
 }
