@@ -5,8 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf.Action;
 
 namespace ResumeAutomator
 {
@@ -15,12 +19,15 @@ namespace ResumeAutomator
         public DocumentBuilder()
         {
             // Documentation @ https://afterlogic.com/mailbee-net/docs-itextsharp/
-            Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+            //Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+            
             String docname = "Test";
+            PdfWriter writer = new PdfWriter(docname + ".pdf");
 
             try  // Try writing to file
             {
-                PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream(docname + ".pdf", FileMode.Create));
+                //PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(docname + ".pdf", FileMode.Create));
+                //writer = new PdfWriter(docname + ".pdf");
             }
             catch (IOException ex)  // Catch if file is open and display message to user
             {
@@ -32,6 +39,9 @@ namespace ResumeAutomator
                 Console.WriteLine("Please close the pdf file that is open");
             }
 
+            PdfDocument pdf = new PdfDocument(writer);
+            Document doc = new Document(pdf);
+
             /* Import Data */
             JSONHandler jhandle = new JSONHandler();
             ResumeData data = jhandle.ReadFromJSON();
@@ -40,30 +50,47 @@ namespace ResumeAutomator
             /*---------------------------           Writing to doc            ------------------------------------*/
 
             /* Open Document */
-            doc.Open();
+            //doc.Open();
 
             /* Register Fonts */
-            FontFactory.RegisterDirectory("C:\\Windows\\Fonts");
-            Font Courier34 = FontFactory.GetFont("Courier New", 34);
-            Font Courier12 = FontFactory.GetFont("Courier New", 12);
-            Font Gothic9 = FontFactory.GetFont("Century Gothic", 9);
+            PdfFontFactory.RegisterDirectory("C:\\Windows\\Fonts");
+            PdfFont Courier = PdfFontFactory.CreateRegisteredFont("Courier New");
+            PdfFont Gothic = PdfFontFactory.CreateRegisteredFont("Century Gothic");
 
             /* Create Content */
-            Paragraph Name = new Paragraph(data.Name, Courier34);
-            Paragraph Bio = new Paragraph(data.Email + " | " + data.Phone + " | " + data.Address, Gothic9);
+            //Paragraph Name = new Paragraph(data.Name, Courier34);
+            Paragraph Name = new Paragraph(data.Name)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(Courier)
+                .SetFontSize(34);
+            //Paragraph Bio = new Paragraph(data.Email + " | " + data.Phone + " | " + data.Address, Gothic9);
+            Paragraph Bio = new Paragraph(data.Email + " | " + data.Phone + " | " + data.Address)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(Courier)
+                .SetFontSize(9);
+            //Paragraph Site = new Paragraph();
+            //Site.Add(new Chunk(data.Site, Gothic9).SetAnchor("https://Barnes7619.com"));
+            Paragraph Site = new Paragraph()
+               .Add(new Link("Barnes7619.com", PdfAction.CreateURI("https://Barnes7619.com")).SetUnderline())
+               .SetTextAlignment(TextAlignment.CENTER)
+               .SetFont(Courier)
+               .SetFontSize(9);
 
-            Paragraph Site = new Paragraph();
-            Site.Add(new Chunk(data.Site, Gothic9).SetAnchor("https://Barnes7619.com"));
 
-            Paragraph SummaryHead = CreateSeparator("Summary");
-            
-            
+            //Paragraph SummaryHead = CreateSeparator("Summary");
+            Paragraph SummaryHead = CreateSeparator("Summary")
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(Courier)
+                .SetFontSize(12);
 
 
-            /* Formatting */
-            Name.Alignment = Element.ALIGN_CENTER;
-            Bio.Alignment = Element.ALIGN_CENTER;
-            Site.Alignment = Element.ALIGN_CENTER;
+
+
+
+            ///* Formatting */
+            //Name.Alignment = Element.ALIGN_CENTER;
+            //Bio.Alignment = Element.ALIGN_CENTER;
+            //Site.Alignment = Element.ALIGN_CENTER;
 
             /* Add Content to Document */
             doc.Add(Name);
@@ -77,9 +104,7 @@ namespace ResumeAutomator
 
         private Paragraph CreateSeparator(string txt)
         {
-            
-            Chunk line = new Chunk("                                        ");
-            line.SetUnderline(1.5f, 3.5f);
+            string line = "---------------------";
 
             Paragraph sep = new Paragraph(line + "  " + txt + "  " + line);
             return sep;
