@@ -12,6 +12,7 @@ using iText.Layout.Properties;
 using iText.Kernel.Font;
 using iText.Kernel.Pdf.Action;
 using iText.Kernel.Pdf.Canvas.Draw;
+using iText.Layout.Borders;
 
 namespace ResumeAutomator
 {
@@ -76,18 +77,16 @@ namespace ResumeAutomator
                    .SetFont(Gothic)
                    .SetFontSize(9);
 
-                DottedLine dots = new DottedLine();
-                dots.SetGap(1);
-                dots.SetLineWidth(1);
 
-                LineSeparator line = new LineSeparator(dots);
+                Table SummaryHead = CreateSeparator("Summary", Courier);
 
+                Table EducationHead = CreateSeparator("Education & Training", Courier);
 
-                Table SummaryHead = CreateSeparator("Summary")
-                    .SetTextAlignment(TextAlignment.CENTER)
-                    .SetFont(Courier)
-                    .SetFontSize(12);
+                Table SoftwareHead = CreateSeparator("Software Experience", Courier);
 
+                Table ExperienceHead = CreateSeparator("Experience", Courier);
+
+                Table SkillsHead = CreateSeparator("Skills", Courier);
 
 
 
@@ -101,8 +100,11 @@ namespace ResumeAutomator
                 doc.Add(Name);
                 doc.Add(Bio);
                 doc.Add(Site);
-                doc.Add(line);
                 doc.Add(SummaryHead);
+                doc.Add(EducationHead);
+                doc.Add(SoftwareHead);
+                doc.Add(ExperienceHead);
+                doc.Add(SkillsHead);
 
                 /* Close Document */
                 doc.Close();
@@ -119,19 +121,35 @@ namespace ResumeAutomator
             }
         }
 
-        private Table CreateSeparator(string txt)
+        private Table CreateSeparator(string txt, PdfFont font)
         {
             txt = "  " + txt + "  ";
+            int txtLength = txt.Length;
             DottedLine dots = new DottedLine();
-            dots.SetGap(1);
+            dots.SetGap((float)0.5);
             dots.SetLineWidth(1);
 
-            LineSeparator line = new LineSeparator(dots);
+            LineSeparator line = new LineSeparator(dots).SetMarginTop(8);
 
-            Table sep = new Table(UnitValue.CreatePercentArray(100), false).UseAllAvailableWidth()
-                .AddCell(new Cell(1, 2).Add(line))
-                .AddCell(new Cell(1,1).Add(new Paragraph(txt)))
-                .AddCell(new Cell(1, 2).Add(line));
+            float sepPer;
+            float txtPer;
+
+            if (txtLength < 12) { sepPer = 45; txtPer = 10; }
+            else if (txtLength < 22) { sepPer = 40; txtPer = 20; }
+            else if (txtLength < 32) { sepPer = 35; txtPer = 30; }
+            else { sepPer = 30; txtPer = 40; }
+
+            
+
+            UnitValue[] colVals = new UnitValue[] { UnitValue.CreatePercentValue(sepPer), UnitValue.CreatePercentValue(txtPer), UnitValue.CreatePercentValue(sepPer) };
+
+            Table sep = new Table(colVals).UseAllAvailableWidth()
+                .AddCell(new Cell(1, 1).Add(line).SetBorder(Border.NO_BORDER))
+                .AddCell(new Cell(1,1).Add(new Paragraph(txt)).SetBorder(Border.NO_BORDER))
+                .AddCell(new Cell(1, 1).Add(line).SetBorder(Border.NO_BORDER))
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(font)
+                .SetFontSize(12);
             return sep;
         }
     }
