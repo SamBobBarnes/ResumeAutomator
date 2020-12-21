@@ -26,5 +26,30 @@ namespace ResumeAutomator
         {
             DocumentBuilder doc = new DocumentBuilder();//data); // Create new DocumentBuilder
         }
+
+        private void BasicInfoBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SummaryBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SpecialCategoryBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void WorkExperienceBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SkillsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
