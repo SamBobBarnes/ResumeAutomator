@@ -29,7 +29,8 @@ namespace ResumeAutomator
 
         private void BasicInfoBtn_Click(object sender, EventArgs e)
         {
-
+            BasicInfo basicWindow = new BasicInfo();
+            basicWindow.ShowDialog();
         }
 
         private void SummaryBtn_Click(object sender, EventArgs e)
