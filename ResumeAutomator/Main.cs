@@ -52,5 +52,8 @@ namespace ResumeAutomator
         {
 
         }
+        
+        // Only use CurrentData.json within program.
+        // When using other data, load into CurrentData and export out of CurrentData
     }
 }
