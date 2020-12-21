@@ -34,6 +34,7 @@ namespace ResumeAutomator
             // 
             // createResume
             // 
+            this.createResume.Enabled = false;
             this.createResume.Location = new System.Drawing.Point(668, 393);
             this.createResume.Name = "createResume";
             this.createResume.Size = new System.Drawing.Size(120, 45);

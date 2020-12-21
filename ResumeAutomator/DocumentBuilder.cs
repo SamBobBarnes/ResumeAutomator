@@ -18,11 +18,12 @@ namespace ResumeAutomator
 {
     public class DocumentBuilder
     {
-        public DocumentBuilder()
+        //static private ResumeData data;   
+        public DocumentBuilder()//ResumeData import)
         {
-            // Documentation @ https://afterlogic.com/mailbee-net/docs-itextsharp/
-            //Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
-            
+
+            //data = import;
+
             String docname = "Test";
             PdfWriter writer = null;
             bool read = false;
@@ -52,8 +53,7 @@ namespace ResumeAutomator
 
                 /*---------------------------           Writing to doc            ------------------------------------*/
 
-                /* Open Document */
-                //doc.Open();
+               
 
                 /* Register Fonts */
                 PdfFontFactory.RegisterDirectory("C:\\Windows\\Fonts");

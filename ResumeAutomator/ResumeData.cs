@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ResumeAutomator
 {
-    class ResumeData
+    public class ResumeData
     {
         public int ID { get; set; }
         public String Name { get; set; }
