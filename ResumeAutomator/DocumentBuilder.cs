@@ -66,7 +66,7 @@ namespace ResumeAutomator
                     .SetFont(Courier)
                     .SetFontSize(34);
 
-                Paragraph Bio = new Paragraph(data.Email + " | " + data.Phone + " | " + data.Address)
+                Paragraph Bio = new Paragraph(data.Email + " | " + data.Phone + " | " + data.Address1)
                     .SetTextAlignment(TextAlignment.CENTER)
                     .SetFont(Gothic)
                     .SetFontSize(9);

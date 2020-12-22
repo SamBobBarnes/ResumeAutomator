@@ -199,6 +199,7 @@ namespace ResumeAutomator
             this.StateBox.Size = new System.Drawing.Size(128, 21);
             this.StateBox.TabIndex = 10;
             this.StateBox.Text = "Select State";
+            this.StateBox.SelectedIndexChanged += new System.EventHandler(this.StateBox_SelectedIndexChanged);
             // 
             // EmailTxt
             // 
@@ -206,6 +207,7 @@ namespace ResumeAutomator
             this.EmailTxt.Name = "EmailTxt";
             this.EmailTxt.Size = new System.Drawing.Size(242, 20);
             this.EmailTxt.TabIndex = 11;
+            this.EmailTxt.TextChanged += new System.EventHandler(this.EmailTxt_TextChanged);
             // 
             // AddressTxt1
             // 
@@ -213,6 +215,7 @@ namespace ResumeAutomator
             this.AddressTxt1.Name = "AddressTxt1";
             this.AddressTxt1.Size = new System.Drawing.Size(242, 20);
             this.AddressTxt1.TabIndex = 12;
+            this.AddressTxt1.TextChanged += new System.EventHandler(this.AddressTxt1_TextChanged);
             // 
             // AddressTxt2
             // 
@@ -220,6 +223,7 @@ namespace ResumeAutomator
             this.AddressTxt2.Name = "AddressTxt2";
             this.AddressTxt2.Size = new System.Drawing.Size(242, 20);
             this.AddressTxt2.TabIndex = 13;
+            this.AddressTxt2.TextChanged += new System.EventHandler(this.AddressTxt2_TextChanged);
             // 
             // CityTxt
             // 
@@ -227,6 +231,7 @@ namespace ResumeAutomator
             this.CityTxt.Name = "CityTxt";
             this.CityTxt.Size = new System.Drawing.Size(242, 20);
             this.CityTxt.TabIndex = 14;
+            this.CityTxt.TextChanged += new System.EventHandler(this.CityTxt_TextChanged);
             // 
             // ZipTxt
             // 
@@ -236,6 +241,7 @@ namespace ResumeAutomator
             this.ZipTxt.Size = new System.Drawing.Size(59, 20);
             this.ZipTxt.TabIndex = 15;
             this.ZipTxt.WordWrap = false;
+            this.ZipTxt.TextChanged += new System.EventHandler(this.ZipTxt_TextChanged);
             // 
             // PhoneTxt2
             // 
