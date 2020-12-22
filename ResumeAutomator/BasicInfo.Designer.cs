@@ -29,6 +29,7 @@ namespace ResumeAutomator
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BasicInfo));
             this.label1 = new System.Windows.Forms.Label();
             this.NameTxt = new System.Windows.Forms.TextBox();
             this.PhoneTxt1 = new System.Windows.Forms.TextBox();
@@ -349,6 +350,7 @@ namespace ResumeAutomator
             this.Controls.Add(this.label2);
             this.Controls.Add(this.NameTxt);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BasicInfo";
             this.Text = "Basic Info";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BasicInfo_FormClosing);

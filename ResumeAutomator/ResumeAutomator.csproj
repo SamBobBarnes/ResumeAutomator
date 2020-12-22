@@ -140,5 +140,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\ResumeIcon.bmp" />
+    <Content Include="Images\ResumeIcon.ico" />
+    <Content Include="Images\ResumeIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

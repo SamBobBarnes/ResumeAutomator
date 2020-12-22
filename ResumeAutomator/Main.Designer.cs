@@ -29,6 +29,7 @@ namespace ResumeAutomator
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResumeAutomator));
             this.createResume = new System.Windows.Forms.Button();
             this.BasicInfoBtn = new System.Windows.Forms.Button();
             this.SummaryBtn = new System.Windows.Forms.Button();
@@ -120,6 +121,7 @@ namespace ResumeAutomator
             this.Controls.Add(this.SummaryBtn);
             this.Controls.Add(this.BasicInfoBtn);
             this.Controls.Add(this.createResume);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ResumeAutomator";
             this.Text = "Resume Automator";
             this.ResumeLayout(false);
