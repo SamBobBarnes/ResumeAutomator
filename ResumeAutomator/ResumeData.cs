@@ -18,6 +18,7 @@ namespace ResumeAutomator
         public String State { get; set; }
         public String Zip { get; set; }
         public String Site { get; set; }
+        public String Summary { get; set; }
         public List<String> Jobs { get; set; }
     }
 }

@@ -35,7 +35,8 @@ namespace ResumeAutomator
 
         private void SummaryBtn_Click(object sender, EventArgs e)
         {
-
+            Summary summaryWindow = new Summary();
+            summaryWindow.ShowDialog();
         }
 
         private void SpecialCategoryBtn_Click(object sender, EventArgs e)

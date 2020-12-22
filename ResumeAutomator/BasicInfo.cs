@@ -24,6 +24,14 @@ namespace ResumeAutomator
 
         private void BasicInfo_Load(object sender, EventArgs e)
         {
+
+            PhoneTxt1.BringToFront();
+            PhoneTxt2.BringToFront();
+            PhoneTxt3.BringToFront();
+
+
+
+
             jhandle = new JSONHandler();
             data = jhandle.ReadFromJSON();
 
@@ -31,22 +39,23 @@ namespace ResumeAutomator
             Loaded = false;
 
             NameTxt.Text = data.Name;
-            if(data.Phone != null && data.Phone.Length == 14)
+            if (data.Phone != null && data.Phone.Length == 14)
             {
                 PhoneTxt1.Text = data.Phone.Substring(1, 3);
                 PhoneTxt2.Text = data.Phone.Substring(6, 3);
                 PhoneTxt3.Text = data.Phone.Substring(10, 4);
             }
             EmailTxt.Text = data.Email;
+            SiteTxt.Text = data.Site;
             AddressTxt1.Text = data.Address1;
             AddressTxt2.Text = data.Address2;
             CityTxt.Text = data.City;
             ZipTxt.Text = data.Zip;
-            if(data.State != null)
+            if (data.State != null)
             {
                 for (int i = 0; i < 50; i++)
                 {
-                    if(data.State == stateList[i])
+                    if (data.State == stateList[i])
                     {
                         StateBox.SelectedIndex = i;
                     }
@@ -55,7 +64,7 @@ namespace ResumeAutomator
                     {
                         Console.WriteLine("Last Line Reached");
                     }
-                } 
+                }
             }
 
             Loaded = true;
@@ -122,7 +131,15 @@ namespace ResumeAutomator
             {
                 data.Email = EmailTxt.Text;
             }
-            
+
+        }
+
+        private void SiteTxt_TextChanged(object sender, EventArgs e)
+        {
+            if (Loaded)
+            {
+                data.Site = SiteTxt.Text;
+            }
         }
 
         private void AddressTxt1_TextChanged(object sender, EventArgs e)
@@ -163,6 +180,115 @@ namespace ResumeAutomator
             {
                 int stateIndex = StateBox.SelectedIndex;
                 data.State = stateList[stateIndex];
+            }
+        }
+
+        private void NameTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                PhoneTxt1.Focus();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void PhoneTxt1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                PhoneTxt2.Focus();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void PhoneTxt2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                PhoneTxt3.Focus();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void PhoneTxt3_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                EmailTxt.Focus();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void EmailTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SiteTxt.Focus();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+        private void SiteTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                AddressTxt1.Focus();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void AddressTxt1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                AddressTxt2.Focus();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void AddressTxt2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CityTxt.Focus();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void CityTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                StateBox.Focus();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void StateBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ZipTxt.Focus();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void ZipTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.Close();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
     }
