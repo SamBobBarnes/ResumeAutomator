@@ -51,7 +51,8 @@ namespace ResumeAutomator
 
         private void SkillsBtn_Click(object sender, EventArgs e)
         {
-
+            Skills skillsWindow = new Skills();
+            skillsWindow.ShowDialog();
         }
         
         // Only use CurrentData.json within program.
