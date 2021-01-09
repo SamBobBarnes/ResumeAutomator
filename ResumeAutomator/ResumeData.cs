@@ -19,7 +19,7 @@ namespace ResumeAutomator
         public String Zip { get; set; }
         public String Site { get; set; }
         public String Summary { get; set; }
-        public List<String> Jobs { get; set; }
+        public List<Dictionary<String,String>> Jobs { get; set; }
         public List<String> Skills { get; set; }
     }
 }
