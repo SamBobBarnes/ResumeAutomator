@@ -146,7 +146,7 @@ namespace ResumeAutomator
             {
                 this.Controls.Remove(skill);
             }
-            AddButtonList = DisableUnlessLast(AddButtonList);
+            AddButtonList = DisableUnlessLast(AddButtonList); 
             AddButtonList = RewriteButtonYandIndex(AddButtonList, true);
             DeleteBtnList = RewriteButtonYandIndex(DeleteBtnList, false);
             SkillBoxList = RewriteTextYandIndex(SkillBoxList);
@@ -177,14 +177,19 @@ namespace ResumeAutomator
             return buts;
         }
 
-        private List<Button> RewriteButtonYandIndex(List<Button> buts, bool addDel)
+        private List<Button> RewriteButtonYandIndex(List<Button> buts, bool isAddBut)
         {
             lowestBox = highestbox;
             for(int i = 0; i == buts.Count - 1; i++)
             {
-                RemoveClickEvent(buts[i]);
-                buts[i].Location = new System.Drawing.Point(addDel ? addButX : delButX, lowestBox);
-                buts[i].Click += delegate (object senderLoc, EventArgs eLoc) { DeleteBtn_Click(senderLoc, eLoc, i); };
+                
+                buts[i].Location = new System.Drawing.Point(isAddBut ? addButX : delButX, lowestBox);
+                if (!isAddBut)
+                {
+                    RemoveClickEvent(buts[i]);
+                    buts[i].Click += delegate (object senderLoc, EventArgs eLoc) { DeleteBtn_Click(senderLoc, eLoc, i); };
+                }
+                
                 lowestBox += boxDiff;
             }
             return buts;
@@ -195,7 +200,7 @@ namespace ResumeAutomator
             lowestBox = highestbox;
             for (int i = 0; i < skills.Count; i++)
             {
-                Console.WriteLine("rewriting skill box");
+                //Console.WriteLine("rewriting skill box");  // Debug
                 skills[i].Location = new System.Drawing.Point(6, lowestBox);
                 skills[i].Text = lowestBox.ToString();
                 lowestBox += boxDiff;
