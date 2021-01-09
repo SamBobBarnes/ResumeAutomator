@@ -14,7 +14,7 @@ namespace ResumeAutomator
     public partial class Skills : Form
     {
         private int highestbox = 6;
-        private int lowestBox = 6;
+        private int lowestBox = 32;
         private int boxDiff = 26;
         private int tabTracker = 0;
         private int addButX = 272;
@@ -64,7 +64,7 @@ namespace ResumeAutomator
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            lowestBox += boxDiff;
+            
 
             // Add next Text Box
             int index = SkillBoxList.Count;
@@ -119,6 +119,8 @@ namespace ResumeAutomator
             {
                 DeleteBtnList[0].Enabled = true;
             }
+
+            lowestBox += boxDiff;
 
         }
 
@@ -202,7 +204,7 @@ namespace ResumeAutomator
             {
                 //Console.WriteLine("rewriting skill box");  // Debug
                 skills[i].Location = new System.Drawing.Point(6, lowestBox);
-                skills[i].Text = lowestBox.ToString();
+                //skills[i].Text = lowestBox.ToString(); // Debug
                 lowestBox += boxDiff;
             }
             return skills;
