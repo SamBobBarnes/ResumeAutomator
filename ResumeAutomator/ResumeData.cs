@@ -20,5 +20,6 @@ namespace ResumeAutomator
         public String Site { get; set; }
         public String Summary { get; set; }
         public List<String> Jobs { get; set; }
+        public List<String> Skills { get; set; }
     }
 }

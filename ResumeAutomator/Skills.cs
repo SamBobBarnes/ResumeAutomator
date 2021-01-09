@@ -20,13 +20,39 @@ namespace ResumeAutomator
         private int addButX = 272;
         private int delButX = 248;
 
+        private ResumeData data;
+        private JSONHandler jhandle;
+
         public Skills()
         {
             InitializeComponent();
         }
 
+        private void LoadSkills()
+        {
+
+        }
+
+        private void SaveSkills()
+        {
+            List<string> skillList = new List<string>();
+            foreach(TextBox skill in SkillBoxList)
+            {
+                if (skill.Text != "")
+                {
+                    skillList.Add(skill.Text);
+                }
+            }
+            data.Skills = skillList;
+            jhandle.WriteToJSON(data);
+        }
+
         private void Skills_Load(object sender, EventArgs e)
         {
+            // Load Data
+            jhandle = new JSONHandler();
+            data = jhandle.ReadFromJSON();
+
             // Add First Text Box
             SkillBoxList.Add(new TextBox());
             SkillBoxList[0].Location = new System.Drawing.Point(6, 6);
@@ -60,6 +86,26 @@ namespace ResumeAutomator
             AddButtonList[0].TabIndex = tabTracker;
             this.Controls.Add(AddButtonList[AddButtonList.Count - 1]);
             tabTracker += 1;
+
+
+            // Add text to SkillBoxes
+            if (data.Skills.Count != 0)
+            {
+                for (int i = 0; i < data.Skills.Count - 1; i++)
+                {
+                    AddRow();
+                }
+                for (int i = 0; i < data.Skills.Count; i++)
+                {
+                    SkillBoxList[i].Text = data.Skills[i];
+                }
+
+                // Add Extra Row
+                AddRow();
+            }
+
+            
+            
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -116,6 +162,69 @@ namespace ResumeAutomator
 
             // Enable First Delete Button When List > 1
             if(DeleteBtnList.Count == 2)
+            {
+                DeleteBtnList[0].Enabled = true;
+            }
+
+            lowestBox += boxDiff;
+
+        }
+
+        private void AddRow()
+        {
+
+
+            // Add next Text Box
+            int index = SkillBoxList.Count;
+            SkillBoxList.Add(new TextBox());
+            SkillBoxList[index].Location = new System.Drawing.Point(6, lowestBox);
+            SkillBoxList[index].Size = new System.Drawing.Size(238, 20);
+            SkillBoxList[index].TabIndex = tabTracker;
+            this.Controls.Add(SkillBoxList[index]);
+            tabTracker += 1;
+            int skillIndex = index;
+
+            // Add next Delete Button
+            index = DeleteBtnList.Count;
+            DeleteBtnList.Add(new Button());
+            DeleteBtnList[index].Location = new System.Drawing.Point(248, lowestBox);
+            DeleteBtnList[index].Size = new System.Drawing.Size(20, 20);
+            DeleteBtnList[index].Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            DeleteBtnList[index].Text = "-";
+            DeleteBtnList[index].UseVisualStyleBackColor = true;
+            DeleteBtnList[index].TabIndex = tabTracker;
+
+            DeleteBtnList[index].Click += delegate (object senderLoc, EventArgs eLoc) { DeleteBtn_Click(senderLoc, eLoc, index); }; //new System.EventHandler(this.DeleteBtn_Click);
+            this.Controls.Add(DeleteBtnList[index]);
+            tabTracker += 1;
+
+
+            // Add next Add Button
+            index = AddButtonList.Count;
+            AddButtonList.Add(new Button());
+            AddButtonList[index].Location = new System.Drawing.Point(272, lowestBox);
+            AddButtonList[index].Size = new System.Drawing.Size(20, 20);
+            AddButtonList[index].Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            AddButtonList[index].Text = "+";
+            AddButtonList[index].UseVisualStyleBackColor = true;
+            AddButtonList[index].Click += new System.EventHandler(this.AddButton_Click);
+            AddButtonList[index].TabIndex = tabTracker;
+            this.Controls.Add(AddButtonList[index]);
+            tabTracker += 1;
+
+            // Disable Add Buttons Except Last
+            foreach (Button but in AddButtonList)
+            {
+                this.Controls.Remove(but);
+            }
+            AddButtonList = DisableUnlessLast(AddButtonList);
+            foreach (Button but in AddButtonList)
+            {
+                this.Controls.Add(but);
+            }
+
+            // Enable First Delete Button When List > 1
+            if (DeleteBtnList.Count == 2)
             {
                 DeleteBtnList[0].Enabled = true;
             }
@@ -225,7 +334,7 @@ namespace ResumeAutomator
 
         private void Skills_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            SaveSkills();
         }
     }
 }
