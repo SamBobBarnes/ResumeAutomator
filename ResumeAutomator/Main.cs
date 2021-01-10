@@ -46,7 +46,8 @@ namespace ResumeAutomator
 
         private void WorkExperienceBtn_Click(object sender, EventArgs e)
         {
-
+            Jobs jobsWindow = new Jobs();
+            jobsWindow.ShowDialog();
         }
 
         private void SkillsBtn_Click(object sender, EventArgs e)
