@@ -70,7 +70,10 @@ namespace ResumeAutomator
             this.Controls.Add(this.label1);
             this.Controls.Add(this.SummaryBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Summary";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Summary";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Summary_FormClosing);
             this.Load += new System.EventHandler(this.Summary_Load);

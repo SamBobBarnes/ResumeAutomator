@@ -122,7 +122,9 @@ namespace ResumeAutomator
             this.Controls.Add(this.BasicInfoBtn);
             this.Controls.Add(this.createResume);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ResumeAutomator";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Resume Automator";
             this.ResumeLayout(false);
 

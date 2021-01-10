@@ -300,6 +300,7 @@ namespace ResumeAutomator
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Jobs";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Jobs";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Jobs_FormClosing);
             this.Load += new System.EventHandler(this.Jobs_Load);
