@@ -293,6 +293,16 @@ namespace ResumeAutomator
             lowestBox = highestbox;
             for(int i = 0; i == buts.Count - 1; i++)
             {
+                RemoveClickEvent(buts[i]);
+                buts[i].Location = new System.Drawing.Point(addDel ? addButX : delButX, lowestBox);
+                if (addDel)
+                {
+                    buts[i].Click += delegate (object senderLoc, EventArgs eLoc) { DeleteBtn_Click(senderLoc, eLoc, i); };
+                }
+                else
+                {
+                    buts[i].Click += new System.EventHandler(this.AddButton_Click);
+                }
                 
                 buts[i].Location = new System.Drawing.Point(isAddBut ? addButX : delButX, lowestBox);
                 if (!isAddBut)
